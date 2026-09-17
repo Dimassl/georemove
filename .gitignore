@@ -1,0 +1,13 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Model cache AI (jangan push! ~100-500MB)
+.u2net/
+
+# OS & editor
+.DS_Store
+.vscode/
