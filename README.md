@@ -1,0 +1,2 @@
+# bgremover
+penghapus latar belakang
