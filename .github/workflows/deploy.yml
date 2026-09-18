@@ -22,7 +22,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             cd /opt/georemove
-            git pull origin main
+            sudo git pull origin main
             /opt/georemove/venv/bin/pip install -r requirements.txt --quiet
             sudo cp public/georemove.html /opt/georemove/public/ 2>/dev/null || true
             sudo systemctl restart georemove
