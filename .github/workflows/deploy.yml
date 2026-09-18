@@ -16,26 +16,15 @@ jobs:
       - name: Deploy ke VPS via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-            host: ${{ secrets.VPS_HOST }}
-            username: ${{ secrets.VPS_USER }}
-            key: ${{ secrets.VPS_SSH_KEY }}
-            port: ${{ secrets.VPS_PORT }}
-            script: |
-                        #Masuk ke direktori project
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT }}
+          script: |
             cd /opt/georemove
-
-                        # Tarik perubahan terbaru dari GitHub
             git pull origin main
-
-                        # Install package baru jika requirements.txt berubah
             /opt/georemove/venv/bin/pip install -r requirements.txt --quiet
-
-                        # Salin frontend ke folder public
             cp public/georemove.html /opt/georemove/public/ 2>/dev/null || true
-
-                        # Restart Flask server
             systemctl restart georemove
-
-                        # Tunggu sebentar lalu cek status
             sleep 3
-            systemctl is-active georemove && echo "✅ Deploy berhasil!" || echo "❌ Service gagal start"
+            systemctl is-active georemove && echo "Deploy berhasil!" || echo "Service gagal start"
