@@ -24,7 +24,7 @@ jobs:
             cd /opt/georemove
             git pull origin main
             /opt/georemove/venv/bin/pip install -r requirements.txt --quiet
-            cp public/georemove.html /opt/georemove/public/ 2>/dev/null || true
+            sudo cp public/georemove.html /opt/georemove/public/ 2>/dev/null || true
             sudo systemctl restart georemove
             sleep 3
             systemctl is-active georemove && echo "Deploy berhasil!" || echo "Service gagal start"
